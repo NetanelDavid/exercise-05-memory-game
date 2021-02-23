@@ -1,0 +1,22 @@
+{
+  "name": "exercise-05-memory-game",
+  "version": "1.0.0",
+  "description": "Fork this project to start the exercise.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NetanelDavid/exercise-05-memory-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NetanelDavid/exercise-05-memory-game/issues"
+  },
+  "homepage": "https://github.com/NetanelDavid/exercise-05-memory-game#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0"
+  }
+}
