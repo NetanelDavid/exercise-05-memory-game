@@ -1,6 +1,7 @@
 var numbers;
 var shsoes = [];
 var indexLatest = -1;
+var elementLatest;
 var timer;
 
 var inputLength = document.getElementById('length');
@@ -49,9 +50,8 @@ function constHtml(){
 
     
 function addCard(i){
-
     let addhtml ='';
-    addhtml += `<div onclick="userOnClick(${i})" id="card${i}" class="text-center background-card"></div>`;
+    addhtml += `<div onclick="userOnClick(${i})" id="${i}" class="text-center background-card"></div>`;
     return addhtml;
 }
 
@@ -64,28 +64,30 @@ function userOnClick(i){
     shsoes[i]=true;
 
     let num = numbers[i];
-    let elenent = document.getElementById('card'+i);
+    let elenent = document.getElementById(i);
+    elenentLatest = document.getElementById(indexLatest);
 
     if(indexLatest==-1){
-        elenent.innerHTML = `<div>${num}</div>`;
+        elenent.innerText = num ;
         indexLatest = i;
         return;
     } 
 
-    
     if(numbers[indexLatest] == num){
-        elenent.outerHTML = `<div class="text-center background-card solved"><div>${num}</div></div>`;
-        document.getElementById(`card${indexLatest}`).outerHTML =`<div class="text-center background-card solved"><div>${numbers[indexLatest]}</div></div>`
+        elenent.classList.add("solved");
+        elenent.innerText = num;
+        elenentLatest.classList.add("solved");
         indexLatest=-1;
     } else {
-        elenent.innerHTML = `<div>${num}</div>`;
+        
+        elenent.innerText = num ;
         shsoes[i]=false;
         shsoes[indexLatest]=false;
         timer =true;
 
         setTimeout(() => {
-            elenent.innerHTML ='';
-            document.getElementById(`card${indexLatest}`).innerHTML='';
+            elenent.innerText =null;
+            elenentLatest.innerText=null;
             indexLatest=-1;
             timer =false;
         }, 500);
