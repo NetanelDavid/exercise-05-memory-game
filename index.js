@@ -1,27 +1,93 @@
-var elementGame = document.getElementById('game');
-for(let i=0; i<10; i++){
-    elementGame.innerHTML += this.addTb(i);
+var numbers;
+var shsoes = [];
+var indexLatest = -1;
+var timer;
+
+var inputLength = document.getElementById('length');
+document.getElementById('srarter').addEventListener('click',start);
+
+function start(){
+    reset();
+    constArrayes();
+    constHtml();
 }
 
-function addTb(i){
-    let ret =''
-    if(i%3==0){
-        console.log(i%3);
-        ret += '<tr>'
+function reset(){
+    numbers;
+    shsoes = [];
+    indexLatest = -1;
+    timer;
+}
+
+function constArrayes(){
+
+    numbers = new Array(inputLength.value*2);
+
+    for(let num = 1; num<=inputLength.value; num++){
+        
+        for(let counter = 0 ; counter<2;){
+
+            let indexRandom= Math.floor(Math.random() * numbers.length);
+
+            if(!numbers[indexRandom]){
+                numbers[indexRandom]=num;
+                counter++;
+            }
+            
+        }
+    }    
+}
+
+function constHtml(){
+    let gameElement = document.getElementById('game');
+    let html = '';
+    for(let i=0; i<inputLength.value*2; i++){
+        html += addCard(i);
     }
+    gameElement.innerHTML = html;
+}
+
     
-    ret += `<tb>${i}</tb>`
+function addCard(i){
 
-    if(i%3==2 || i==9){
-        console.log(i%3);
-        ret += '</tr>'
-    }
-    return ret;
+    let addhtml ='';
+    addhtml += `<div onclick="userOnClick(${i})" id="card${i}" class="text-center background-card"></div>`;
+    return addhtml;
 }
 
+function userOnClick(i){
 
-//elementLength = document.addEventListener('click',setLength);
-/*function setLength() {
-    console.log(document.getElementById('length').innerHTML);
-  console.log(this.length);
-}*/
+    if(shsoes[i] || timer){
+        return;
+    }
+
+    shsoes[i]=true;
+
+    let num = numbers[i];
+    let elenent = document.getElementById('card'+i);
+
+    if(indexLatest==-1){
+        elenent.innerHTML = `<div>${num}</div>`;
+        indexLatest = i;
+        return;
+    } 
+
+    
+    if(numbers[indexLatest] == num){
+        elenent.outerHTML = `<div class="text-center background-card solved"><div>${num}</div></div>`;
+        document.getElementById(`card${indexLatest}`).outerHTML =`<div class="text-center background-card solved"><div>${numbers[indexLatest]}</div></div>`
+        indexLatest=-1;
+    } else {
+        elenent.innerHTML = `<div>${num}</div>`;
+        shsoes[i]=false;
+        shsoes[indexLatest]=false;
+        timer =true;
+
+        setTimeout(() => {
+            elenent.innerHTML ='';
+            document.getElementById(`card${indexLatest}`).innerHTML='';
+            indexLatest=-1;
+            timer =false;
+        }, 500);
+    }
+}
