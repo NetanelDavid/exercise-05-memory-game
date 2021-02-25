@@ -53,3 +53,8 @@
 .temp{
     background-color:orange;
 }
+
+.error{
+  background-color: red;
+  color: black;
+}

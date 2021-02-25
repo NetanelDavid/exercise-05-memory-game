@@ -5,7 +5,6 @@ var elementLatest;
 var timer;
 
 var inputLength = document.getElementById('length');
-document.getElementById('srarter').addEventListener('click',start);
 
 function start(){
     reset();
@@ -51,7 +50,7 @@ function constHtml(){
     
 function addCard(i){
     let addhtml ='';
-    addhtml += `<div onclick="userOnClick(${i})" id="${i}" class="text-center background-card"></div>`;
+    addhtml += `<div onclick="userOnClick(${i})" id="${i}" class="background-card"></div>`;
     return addhtml;
 }
 
@@ -64,30 +63,38 @@ function userOnClick(i){
     shsoes[i]=true;
 
     let num = numbers[i];
-    let elenent = document.getElementById(i);
-    elenentLatest = document.getElementById(indexLatest);
-
+    let element = document.getElementById(i);
+    elementLatest = document.getElementById(indexLatest);
+    
+    element.classList.add("text-center");
     if(indexLatest==-1){
-        elenent.innerText = num ;
+        element.innerText = num ;
         indexLatest = i;
+        element.classList.add("temp");
         return;
     } 
 
+    elementLatest.classList.remove("temp");
+    
     if(numbers[indexLatest] == num){
-        elenent.classList.add("solved");
-        elenent.innerText = num;
-        elenentLatest.classList.add("solved");
+        element.classList.add("solved");
+        element.innerText = num;
+        elementLatest.classList.add("solved");
         indexLatest=-1;
     } else {
-        
-        elenent.innerText = num ;
+
+        element.classList.add("error"); 
+        elementLatest.classList.add("error");     
+        element.innerText = num ;
         shsoes[i]=false;
         shsoes[indexLatest]=false;
-        timer =true;
+        timer = true;
 
         setTimeout(() => {
-            elenent.innerText =null;
-            elenentLatest.innerText=null;
+            element.classList.remove("error");
+            elementLatest.classList.remove("error");
+            element.innerText =null;
+            elementLatest.innerText=null;
             indexLatest=-1;
             timer =false;
         }, 500);
