@@ -1,5 +1,4 @@
 var numbers;
-var shsoes = [];
 var indexLatest = -1;
 var elementLatest;
 var timer;
@@ -14,9 +13,9 @@ function start(){
 
 function reset(){
     numbers;
-    shsoes = [];
     indexLatest = -1;
     timer;
+    document.getElementById("game").innerHTML=null;
 }
 
 function constArrayes(){
@@ -40,27 +39,23 @@ function constArrayes(){
 
 function constHtml(){
     let gameElement = document.getElementById('game');
-    let html = '';
     for(let i=0; i<inputLength.value*2; i++){
-        html += addCard(i);
+        gameElement.innerHTML += `<div id="${i}" class="background-card"></div>`;
+       setTimeout(() => {
+            document.getElementById(i).addEventListener("click",userOnClick);
+       });
     }
-    gameElement.innerHTML = html;
 }
 
+function userOnClick(event){
+
+    console.dir(event);
+
+    const i = +event.currentTarget.id;
     
-function addCard(i){
-    let addhtml ='';
-    addhtml += `<div onclick="userOnClick(${i})" id="${i}" class="background-card"></div>`;
-    return addhtml;
-}
-
-function userOnClick(i){
-
-    if(shsoes[i] || timer){
+    if(i==indexLatest || timer){
         return;
     }
-
-    shsoes[i]=true;
 
     let num = numbers[i];
     let element = document.getElementById(i);
@@ -79,20 +74,21 @@ function userOnClick(i){
     if(numbers[indexLatest] == num){
         element.classList.add("solved");
         element.innerText = num;
+        element.removeEventListener("click",userOnClick);
+
         elementLatest.classList.add("solved");
+        elementLatest.removeEventListener("click",userOnClick);
         indexLatest=-1;
     } else {
 
         element.classList.add("error"); 
         elementLatest.classList.add("error");     
         element.innerText = num ;
-        shsoes[i]=false;
-        shsoes[indexLatest]=false;
         timer = true;
 
         setTimeout(() => {
-            element.classList.remove("error");
-            elementLatest.classList.remove("error");
+            element.classList.remove("error","text-center");
+            elementLatest.classList.remove("error","text-center");
             element.innerText =null;
             elementLatest.innerText=null;
             indexLatest=-1;
