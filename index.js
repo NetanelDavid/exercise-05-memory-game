@@ -24,6 +24,7 @@ function reset(){
 }
 
 function constArrayes(){
+    let a=0;
 
     numbers = new Array(inputLength.value*2);
 
@@ -31,9 +32,10 @@ function constArrayes(){
         
         for(let counter = 0 ; counter<2;){
 
-            let indexRandom= Math.floor(Math.random() * numbers.length);
+            let indexRandom = Math.floor(Math.random() * numbers.length);
 
             if(!numbers[indexRandom]){
+                
                 numbers[indexRandom]=num;
                 counter++;
             }
@@ -63,10 +65,9 @@ function userOnClick(event){
     let num = numbers[i];
     let element = document.getElementById(i+'');
     elementLatest = document.getElementById(indexLatest+'');
-    steps++;
     
     element.classList.add("text-center");
-
+    
     if(indexLatest==-1){
         element.classList.add("temp");
         element.innerText = num ;
@@ -75,6 +76,7 @@ function userOnClick(event){
     } 
     
     elementLatest.classList.remove("temp");
+    steps++;
     
     if(numbers[indexLatest] == num){
         element.classList.add("solved");
