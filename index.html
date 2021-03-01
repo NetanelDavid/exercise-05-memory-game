@@ -9,8 +9,9 @@
 </head>
 <body>
     <div id="background">
-        <input min='0' type="number" id='length'>
-        <button onclick="start()" class="btn btn-success radud" id='srarter'>start game</button>
+        <input min='0' max="100" type="number"  class="text-center radius" id='length'>
+        <button onclick="start()" class="btn btn-success radius" id='srarter'>start game</button>
+        <p id="won" class="text-center won"></p>
         <div id="game" class="row"></div>
     </div>
     <script src='index.js'></script>

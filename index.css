@@ -1,7 +1,7 @@
 .background-card{
     margin: 20px 0px 0px 20px;
     background-color: black;
-    color:rgb(255, 255, 255);
+    color:white;
     width: 50px;
     height: 50px;
     font-size: 32px;
@@ -13,6 +13,9 @@
       height: 72px;
       font-size: 46px;
     }
+    .won{
+      font-size:61px;
+    }
   }
   
   @media (min-width: 768px) {
@@ -20,6 +23,10 @@
       width: 96px;
       height:96px;
       font-size: 61px;
+    }
+
+    .won{
+      font-size:79px;
     }
   }
   
@@ -29,6 +36,10 @@
       height:124px;
       font-size: 79px;
     }
+
+    .won{
+      font-size:96px;
+    }
   }
   
   @media (min-width: 1200px) {
@@ -37,24 +48,35 @@
       height:150px;
       font-size: 96px;
     }
+
+    .won{
+      font-size:125px;
+    }
   }
 
-.radud{
+.radius{
   width:90px;
   height: 90px;
   border-radius: 45px;
 }
 
 .solved{
-    background-color:greenyellow;
-    color: darkturquoise;
+  background-color:greenyellow;
+  color: darkturquoise;
 }
 
 .temp{
-    background-color:orange;
+  background-color:orange;
 }
 
 .error{
   background-color: red;
   color: black;
+}
+
+.won{
+  margin:20px 0px 20px 0px;
+  background-color:darkturquoise;
+  color:greenyellow;
+  font-family: 'Courier New';
 }
